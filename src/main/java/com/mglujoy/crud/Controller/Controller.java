@@ -3,9 +3,12 @@ package com.mglujoy.crud.Controller;
 import com.mglujoy.crud.exceptions.ResourceNotFoundException;
 import com.mglujoy.crud.models.Education;
 import com.mglujoy.crud.repository.Repository;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,5 +54,17 @@ public class Controller {
         
         Education updatedEducation = repository.save(education);
         return ResponseEntity.ok(updatedEducation);
+    }
+    
+    @DeleteMapping("/education/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteEducationbyId(
+    @PathVariable Long id) {
+        Education education = repository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("No such education exists"));
+        
+        repository.delete(education);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("delete", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 }
