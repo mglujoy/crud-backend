@@ -2,7 +2,11 @@ package com.mglujoy.crud.Controller;
 
 import com.mglujoy.crud.exceptions.ResourceNotFoundException;
 import com.mglujoy.crud.models.Education;
+import com.mglujoy.crud.models.Skills;
+import com.mglujoy.crud.models.Work;
 import com.mglujoy.crud.repository.Repository;
+import com.mglujoy.crud.repository.SkillsRepository;
+import com.mglujoy.crud.repository.WorkRepository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,15 +27,39 @@ public class Controller {
     
     @Autowired
     private Repository repository;
+    @Autowired
+    private WorkRepository workRepository;
+    @Autowired
+    private SkillsRepository skillsRepository;    
     
     @GetMapping("/education")
     public List<Education> listEducation() {
         return repository.findAll();
     }
     
+    @GetMapping("/work")
+    public List<Work> listWork() {
+        return workRepository.findAll();
+    }
+
+    @GetMapping("/skills")
+    public List<Skills> listSkills() {
+        return skillsRepository.findAll();
+    }
+    
     @PostMapping("/education")
     public Education saveEducation(@RequestBody Education education) {
         return repository.save(education);
+    }
+    
+    @PostMapping("/work")
+    public Work saveWork(@RequestBody Work work) {
+        return workRepository.save(work);
+    }
+    
+    @PostMapping("/skills")
+    public Skills saveSkills(@RequestBody Skills skill) {
+        return skillsRepository.save(skill);
     }
     
     @GetMapping("/education/{id}")
@@ -63,6 +91,18 @@ public class Controller {
                 .orElseThrow(()-> new ResourceNotFoundException("No such education exists"));
         
         repository.delete(education);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("delete", Boolean.TRUE);
+        return ResponseEntity.ok(response);
+    }
+    
+        @DeleteMapping("/work/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteWorkbyId(
+    @PathVariable Long id) {
+        Work work = workRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("No such work exists"));
+        
+        workRepository.delete(work);
         Map<String, Boolean> response = new HashMap<>();
         response.put("delete", Boolean.TRUE);
         return ResponseEntity.ok(response);
