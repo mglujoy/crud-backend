@@ -4,10 +4,12 @@ import com.mglujoy.crud.exceptions.ResourceNotFoundException;
 import com.mglujoy.crud.models.About;
 import com.mglujoy.crud.models.Education;
 import com.mglujoy.crud.models.Home;
+import com.mglujoy.crud.models.Reach;
 import com.mglujoy.crud.models.Skills;
 import com.mglujoy.crud.models.Work;
 import com.mglujoy.crud.repository.AboutRepository;
 import com.mglujoy.crud.repository.HomeRepository;
+import com.mglujoy.crud.repository.ReachRepository;
 import com.mglujoy.crud.repository.Repository;
 import com.mglujoy.crud.repository.SkillsRepository;
 import com.mglujoy.crud.repository.WorkRepository;
@@ -39,6 +41,8 @@ public class Controller {
     private HomeRepository homeRepository;
     @Autowired
     private AboutRepository aboutRepository;
+    @Autowired
+    private ReachRepository reachRepository;
     
     @GetMapping("/education")
     public List<Education> listEducation() {
@@ -65,6 +69,11 @@ public class Controller {
         return aboutRepository.findAll();
     }
     
+    @GetMapping("/reach")
+    public List<Reach> listReach() {
+        return reachRepository.findAll();
+    }
+    
     @PostMapping("/education")
     public Education saveEducation(@RequestBody Education education) {
         return repository.save(education);
@@ -88,6 +97,11 @@ public class Controller {
     @PostMapping("/about")
     public About saveAbout(@RequestBody About about) {
         return aboutRepository.save(about);
+    }
+    
+    @PostMapping("/reach")
+    public Reach saveReach(@RequestBody Reach reach) {
+        return reachRepository.save(reach);
     }
     
     @GetMapping("/education/{id}")
