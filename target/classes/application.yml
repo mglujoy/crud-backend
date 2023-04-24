@@ -1,0 +1,21 @@
+server:
+    port: 8081
+spring:
+    datasource:
+        url: jdbc:=mysql://u0o6zx4wtk7jgtiu:cDViEY2qbqwl04EZd2Ln@bosnmp7djvxn9tn4lm4g-mysql.services.clever-cloud.com:3306/bosnmp7djvxn9tn4lm4g
+        username: u0o6zx4wtk7jgtiu
+        password: cDViEY2qbqwl04EZd2Ln
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+        hibernate:
+            ddl-auto : update
+        show-sql: true
+        properties: 
+            hibernate:
+                format_sql: true
+        database: mysql
+        databse-platform: org.hibernate.dialect.MySQLDialect
+    autoconfigure:
+        exclude: 
+
+

@@ -1,0 +1,16 @@
+com\mglujoy\crud\models\Reach.class
+com\mglujoy\crud\models\Skills.class
+com\mglujoy\crud\CrudApplication$1.class
+com\mglujoy\crud\Controller\Controller.class
+com\mglujoy\crud\models\Home.class
+com\mglujoy\crud\repository\SkillsRepository.class
+com\mglujoy\crud\models\About.class
+com\mglujoy\crud\models\Work.class
+com\mglujoy\crud\repository\HomeRepository.class
+com\mglujoy\crud\repository\ReachRepository.class
+com\mglujoy\crud\repository\WorkRepository.class
+com\mglujoy\crud\exceptions\ResourceNotFoundException.class
+com\mglujoy\crud\models\Education.class
+com\mglujoy\crud\repository\Repository.class
+com\mglujoy\crud\repository\AboutRepository.class
+com\mglujoy\crud\CrudApplication.class
